@@ -1,0 +1,4 @@
+@(params: uk.gov.hmrc.emailrenderertemplate.controllers.model.Params)
+
+Hi @(params.parameters("name")),
+	This is a sample email for template: sample2.
