@@ -23,7 +23,6 @@ private object AppDependencies {
     "uk.gov.hmrc"       %% "hmrctest"               % "1.9.0" % "test,it",
     "org.scalatest"     %% "scalatest"              % "2.2.6" % "test,it",
     "org.pegdown"       % "pegdown"                 % "1.6.0" % "test,it",
-    "com.typesafe.play" %% "play-test"              % PlayVersion.current % "test,it",
-    "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % "test,it"
+    "com.typesafe.play" %% "play-test"              % PlayVersion.current % "test,it"
   )
 }
