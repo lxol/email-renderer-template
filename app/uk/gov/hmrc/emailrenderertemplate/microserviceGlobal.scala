@@ -51,13 +51,13 @@ object MicroserviceAuthFilter extends AuthorisationFilter {
 }
 
 object MicroserviceGlobal extends DefaultMicroserviceGlobal with RunMode {
-  override val auditConnector = MicroserviceAuditConnector
+  override lazy val auditConnector = MicroserviceAuditConnector
 
   override def microserviceMetricsConfig(implicit app: Application): Option[Configuration] = app.configuration.getConfig(s"microservice.metrics")
 
-  override val loggingFilter = MicroserviceLoggingFilter
+  override lazy val loggingFilter = MicroserviceLoggingFilter
 
-  override val microserviceAuditFilter = MicroserviceAuditFilter
+  override lazy val microserviceAuditFilter = MicroserviceAuditFilter
 
-  override val authFilter = Some(MicroserviceAuthFilter)
+  override lazy val authFilter = Some(MicroserviceAuthFilter)
 }

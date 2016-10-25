@@ -16,7 +16,9 @@
 
 package uk.gov.hmrc.emailrenderertemplate.domain
 
-import play.api.libs.json.Json
+import com.ning.http.util.Base64
+import org.apache.commons.codec.Charsets
+import play.api.libs.json.{JsValue, Json, Writes}
 
 case class RenderResult(
                          plain: String,
@@ -27,5 +29,16 @@ case class RenderResult(
                        )
 
 object RenderResult{
-  implicit val format = Json.format[RenderResult]
+
+  private def base64Encoded(value: String) = Base64.encode(value.getBytes(Charsets.UTF_8))
+
+  implicit val writes = new Writes[RenderResult] {
+    override def writes(r: RenderResult): JsValue = Json.obj(
+      "plain" -> base64Encoded(r.plain),
+      "html" -> base64Encoded(r.html),
+      "fromAddress" -> r.fromAddress,
+      "subject" -> r.subject,
+      "service" -> r.service
+    )
+  }
 }
