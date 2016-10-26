@@ -11,3 +11,8 @@
 
 # Add all the application routes to the prod.routes file
 ->         /                          prod.Routes
+
+GET /test-only/preview                           uk.gov.hmrc.emailrenderertemplate.preview.PreviewController.preview
+GET /test-only/preview/html/:templateId          uk.gov.hmrc.emailrenderertemplate.preview.PreviewController.previewHtml(templateId: String)
+GET /test-only/preview/html/source/:templateId   uk.gov.hmrc.emailrenderertemplate.preview.PreviewController.previewHtmlSource(templateId: String)
+GET /test-only/preview/text/:templateId          uk.gov.hmrc.emailrenderertemplate.preview.PreviewController.previewText(templateId: String)

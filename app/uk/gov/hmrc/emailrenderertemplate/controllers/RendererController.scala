@@ -36,13 +36,13 @@ trait RendererController extends BaseController {
 
 	def render(templateId: String) = Action.async(parse.json) { implicit request =>
 		withJsonBody[Params] { params =>
-			Future.successful((rendererService.render(templateId, params) match {
+			Future.successful(rendererService.render(templateId, params) match {
 				case Right(renderResult) => Ok(Json.toJson(renderResult))
 				case Left(error: NoTemplateFoundError) =>
 					NotFound(Json.toJson(error))
 				case Left(error: RenderTemplateError) =>
 					BadRequest(Json.toJson(error))
-			}))
+			})
 		}
 	}
 }
