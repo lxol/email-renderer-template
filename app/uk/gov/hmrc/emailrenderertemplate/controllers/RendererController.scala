@@ -39,9 +39,9 @@ trait RendererController extends BaseController {
 			Future.successful((rendererService.render(templateId, params) match {
 				case Right(renderResult) => Ok(Json.toJson(renderResult))
 				case Left(error: NoTemplateFoundError) =>
-					NotFound(Json.obj("missingTemplateId" -> error.templateId))
+					NotFound(Json.toJson(error))
 				case Left(error: RenderTemplateError) =>
-					BadRequest(Json.obj("reason" -> s"Failed to render template due to: ${error.reason}"))
+					BadRequest(Json.toJson(error))
 			}))
 		}
 	}

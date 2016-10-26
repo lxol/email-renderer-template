@@ -28,7 +28,7 @@ object ErrorMessage{
   implicit val writes: Writes[ErrorMessage] = new Writes[ErrorMessage] {
     override def writes(error: ErrorMessage): JsValue = error match {
       case e:NoTemplateFoundError => Json.obj("reason" -> s"Missing template with id: ${e.msg}")
-      case other => Json.obj("reason" -> other.msg)
+      case other => Json.obj("reason" -> s"Failed to render template due to: ${other.msg}")
     }
   }
 }
