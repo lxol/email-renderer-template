@@ -7,6 +7,7 @@ This will be utilised by email service to render and then send emails.
 
 # API
 | **Path**                     | **Supported Methods** | **Description** |
+| ---------------------------- | --------------------- | --------------- |
 | ```/templates/:templateId``` | POST                  | Render the email using the template for templateId [More...](#post-templatestemplateId) |
 
 # POST /templates/:templateId
