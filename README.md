@@ -2,8 +2,10 @@
 
 [![Build Status](https://travis-ci.org/hmrc/email-renderer-template.svg)](https://travis-ci.org/hmrc/email-renderer-template) [ ![Download](https://api.bintray.com/packages/hmrc/releases/email-renderer-template/images/download.svg) ](https://bintray.com/hmrc/releases/email-renderer-template/_latestVersion)
 
-Sample email renderer service for rendering emails for  given template ID. 
+To send emails via the HMRC email service, the client must create an email rendering service similar to this template.
 This will be utilised by email service to render and then send emails.
+The following end point to render a template, should be supported alongwith a preview test end point.
+
 
 # API
 | **Path**                     | **Supported Methods** | **Description** |
@@ -47,6 +49,18 @@ Responds with status:
 }
  ```
  
+### Preview
+| **Path**                                         | **Supported Methods** | **Description** |
+| -------------------------------------------------| --------------------- | --------------- |
+| ```/email-renderer-template/test-only/preview``` | GET                   | Home page to preview all the templates supported by this renderer [More...](#get-email-renderer-templatetest-onlypreview) |
+
+# GET /email-renderer-template/test-only/preview
+
+During development of templates, the final display of each template can be verified using the preview end point. 
+This shows how the template will be rendered on an email client using sample parameters.
+
+For representation on multiple email clients and browsers, please use [Litmus](https://litmus.com/email-testing)
+
 ### License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html")
