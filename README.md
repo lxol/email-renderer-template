@@ -11,6 +11,7 @@ The following end point to render a template, should be supported alongwith a pr
 | **Path**                     | **Supported Methods** | **Description** |
 | ---------------------------- | --------------------- | --------------- |
 | ```/templates/:templateId``` | POST                  | Render the email using the template for templateId [More...](#post-templatestemplateId) |
+| ```/email-renderer-template/test-only/preview``` | GET                   | Home page to preview all the templates supported by this renderer [More...](#get-email-renderer-templatetest-onlypreview) |
 
 # POST /templates/:templateId
  
@@ -31,11 +32,11 @@ Responds with status:
 
  ```json
 {
-    "plain": "Rendered template in text format",
-    "html": "Rendered template in HTML format",
+    "plain": "Base64 encoded rendered template in text format",
+    "html": "Base64 encode endered template in HTML format",
     "fromAddress": "From address to be used for this email when sending",
     "subject": "Email subject to use", 
-    "service": "The regime (i.e. - sa/paye/etc) that this template belongs to"
+    "service": "The type of service (for hmrc coorresponds to regime, i.e. sa/paye/etc) that this template belongs to"
 }
  ```
 * 404 When the template with the provided ID cannot be resolved.
@@ -48,11 +49,6 @@ Responds with status:
     "reason": "key not found: param10"
 }
  ```
- 
-### Preview
-| **Path**                                         | **Supported Methods** | **Description** |
-| -------------------------------------------------| --------------------- | --------------- |
-| ```/email-renderer-template/test-only/preview``` | GET                   | Home page to preview all the templates supported by this renderer [More...](#get-email-renderer-templatetest-onlypreview) |
 
 # GET /email-renderer-template/test-only/preview
 
