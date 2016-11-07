@@ -14,17 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.emailrenderertemplate.services
+package uk.gov.hmrc.emailrenderertemplate.domain
 
-import uk.gov.hmrc.emailrenderertemplate.domain.Template
-import uk.gov.hmrc.emailrenderertemplate.templates.sample1.Sample1Group
-import uk.gov.hmrc.emailrenderertemplate.templates.sample2.Sample2Group
+object MessagePriority extends Enumeration {
+  type MessagePriority = Value
 
-trait TemplateLocator {
-  def templates: Seq[Template]
-
-  def findTemplate(templateId: String) : Option[Template] = templates.find(_.templateId == templateId)
-}
-object TemplateLocator extends TemplateLocator {
-  override val templates = Sample1Group.Templates ++ Sample2Group.Templates
+  val Urgent     = Value("urgent")
+  val Standard   = Value("standard")
+  val Background = Value("background")
 }

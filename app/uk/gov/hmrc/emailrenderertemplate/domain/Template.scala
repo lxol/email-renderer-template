@@ -18,17 +18,9 @@ package uk.gov.hmrc.emailrenderertemplate.domain
 
 import play.twirl.api.{Appendable, Html, Txt}
 import uk.gov.hmrc.emailrenderertemplate.controllers.model.Params
+import uk.gov.hmrc.emailrenderertemplate.domain.MessagePriority.MessagePriority
 
-abstract class Template {
-
-  def templateId: String
-
-  def fromAddress: String
-
-  def subject: Subject
-
-  def body: Body
-}
+final case class Template(templateId: String, fromAddress: String, subject: Subject, body: Body, priority: MessagePriority)
 
 object Template {
   def render(template: Template, params: Params): Either[ErrorMessage, RenderResult] =
@@ -37,7 +29,10 @@ object Template {
         template.body.text(params).toString,
         template.body.html(params).toString,
         template.fromAddress,
-        template.subject.text))
+        template.subject.text,
+        "REPLACE WITH YOUR TAX DOMAIN",
+        template.priority
+      ))
     } catch {
       case ex: Throwable => Left(RenderTemplateError(ex.getMessage))
     }
@@ -45,7 +40,4 @@ object Template {
 
 case class Subject(text: String)
 
-case class Body(
-                 html: Params => Appendable[Html],
-                 text: Params => Appendable[Txt]
-               )
+case class Body(html: Params => Appendable[Html], text: Params => Appendable[Txt])

@@ -1,19 +1,19 @@
-import play.routes.compiler.StaticRoutesGenerator
+import play.sbt.routes.RoutesKeys.{routesGenerator, StaticRoutesGenerator}
+
 import sbt.Keys._
 import sbt.Tests.{SubProcess, Group}
 import sbt._
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin._
 
+import uk.gov.hmrc._
+import DefaultBuildSettings._
+import uk.gov.hmrc.SbtAutoBuildPlugin
+import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin
+import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin._
+import uk.gov.hmrc.versioning.SbtGitVersioning
 
 trait MicroService {
 
-  import uk.gov.hmrc._
-  import DefaultBuildSettings._
   import TestPhases._
-  import uk.gov.hmrc.SbtAutoBuildPlugin
-  import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin
-  import uk.gov.hmrc.versioning.SbtGitVersioning
-  import play.sbt.routes.RoutesKeys.routesGenerator
 
   val appName: String
 
@@ -49,7 +49,6 @@ trait MicroService {
 }
 
 private object TestPhases {
-
   def oneForkedJvmPerTest(tests: Seq[TestDefinition]) =
     tests map {
       test => new Group(test.name, Seq(test), SubProcess(ForkOptions(runJVMOptions = Seq("-Dtest.name=" + test.name))))
