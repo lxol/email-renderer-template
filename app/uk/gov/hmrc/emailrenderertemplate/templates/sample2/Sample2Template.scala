@@ -16,11 +16,12 @@
 
 package uk.gov.hmrc.emailrenderertemplate.templates.sample2
 
-import uk.gov.hmrc.emailrenderertemplate.domain.{Body, Subject, Template}
+import uk.gov.hmrc.emailrenderertemplate.domain.{Body, MessagePriority, Subject, Template}
 
 case object Sample2Template extends Template {
   val templateId: String = "sample2"
   val fromAddress: String = "<sample2>@gov.uk"
   val subject: Subject = Subject("New message for sample2 template")
   val body: Body = Body(html.sample2.f, txt.sample2.f)
+  val priority = MessagePriority.Standard
 }

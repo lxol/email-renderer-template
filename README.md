@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/hmrc/email-renderer-template.svg)](https://travis-ci.org/hmrc/email-renderer-template) [ ![Download](https://api.bintray.com/packages/hmrc/releases/email-renderer-template/images/download.svg) ](https://bintray.com/hmrc/releases/email-renderer-template/_latestVersion)
 
-To send emails via the HMRC email service, the client must create an email rendering service similar to this template.
+To send emails via the HMRC email service, clients must create an email rendering service similar to this template.
 This will be utilised by email service to render and then send emails.
-The following end point to render a template, should be supported alongwith a preview test end point.
+The following end point to render a template, should be supported along with a preview test end point.
 
 
 # API
@@ -36,7 +36,8 @@ Responds with status:
     "html": "Base64 encode endered template in HTML format",
     "fromAddress": "From address to be used for this email when sending",
     "subject": "Email subject to use", 
-    "service": "The type of service (for hmrc coorresponds to regime, i.e. sa/paye/etc) that this template belongs to"
+    "service": "The type of service (for hmrc coorresponds to regime, i.e. sa/paye/etc) that this template belongs to",
+    "priority": "the priority queue that the email service should route the message to. one of { urgent, standard or background }
 }
  ```
 * 404 When the template with the provided ID cannot be resolved.

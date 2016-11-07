@@ -16,29 +16,31 @@
 
 package uk.gov.hmrc.emailrenderertemplate.domain
 
-import com.ning.http.util.Base64
-import org.apache.commons.codec.Charsets
-import play.api.libs.json.{JsValue, Json, Writes}
+import java.nio.charset.StandardCharsets
 
-case class RenderResult(
-                         plain: String,
-                         html: String,
-                         fromAddress: String,
-                         subject: String,
-                         service: String = "tax-domain"
-                       )
+import com.ning.http.util.Base64
+import play.api.libs.json.{JsValue, Json, Writes}
+import uk.gov.hmrc.emailrenderertemplate.domain.MessagePriority.MessagePriority
+
+case class RenderResult(plain: String,
+                        html: String,
+                        fromAddress: String,
+                        subject: String,
+                        service: String,
+                        priority: MessagePriority)
 
 object RenderResult{
 
-  private def base64Encoded(value: String) = Base64.encode(value.getBytes(Charsets.UTF_8))
+  private def base64Encoded(value: String) = Base64.encode(value.getBytes(StandardCharsets.UTF_8))
 
   implicit val writes = new Writes[RenderResult] {
     override def writes(r: RenderResult): JsValue = Json.obj(
-      "plain" -> base64Encoded(r.plain),
-      "html" -> base64Encoded(r.html),
+      "plain"       -> base64Encoded(r.plain),
+      "html"        -> base64Encoded(r.html),
       "fromAddress" -> r.fromAddress,
-      "subject" -> r.subject,
-      "service" -> r.service
+      "subject"     -> r.subject,
+      "service"     -> r.service,
+      "priority"    -> r.priority.toString
     )
   }
 }
