@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.emailrenderertemplate.templates.sample2
+package uk.gov.hmrc.emailrenderertemplate.templates.sample1
 
 import uk.gov.hmrc.emailrenderertemplate.domain.{Body, MessagePriority, Subject, Template}
 
-case object Sample2Template extends Template {
-  val templateId: String = "sample2"
-  val fromAddress: String = "<sample2>@gov.uk"
-  val subject: Subject = Subject("New message for sample2 template")
-  val body: Body = Body(html.sample2.f, txt.sample2.f)
-  val priority = MessagePriority.Standard
+object Sample1Group {
+  val Templates = Seq(
+    Template(
+      templateId = "sample1",
+      fromAddress = "<sample1> @gov.uk",
+      subject = Subject("New message for sample1 template"),
+      body = Body(html.sample1.f, txt.sample1.f),
+      priority = MessagePriority.Standard
+    )
+  )
 }

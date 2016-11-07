@@ -17,15 +17,14 @@
 package uk.gov.hmrc.emailrenderertemplate.services
 
 import uk.gov.hmrc.emailrenderertemplate.domain.Template
-import uk.gov.hmrc.emailrenderertemplate.templates.sample1.Sample1Template
-import uk.gov.hmrc.emailrenderertemplate.templates.sample2.Sample2Template
+import uk.gov.hmrc.emailrenderertemplate.templates.sample1.Sample1Group
+import uk.gov.hmrc.emailrenderertemplate.templates.sample2.Sample2Group
 
-object TemplateLocator extends TemplateLocator {
-  override val templates = Seq(Sample1Template, Sample2Template)
-}
 trait TemplateLocator {
-
   def templates: Seq[Template]
 
   def findTemplate(templateId: String) : Option[Template] = templates.find(_.templateId == templateId)
+}
+object TemplateLocator extends TemplateLocator {
+  override val templates = Sample1Group.Templates ++ Sample2Group.Templates
 }

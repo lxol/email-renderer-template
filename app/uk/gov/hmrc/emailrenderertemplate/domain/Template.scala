@@ -20,18 +20,7 @@ import play.twirl.api.{Appendable, Html, Txt}
 import uk.gov.hmrc.emailrenderertemplate.controllers.model.Params
 import uk.gov.hmrc.emailrenderertemplate.domain.MessagePriority.MessagePriority
 
-abstract class Template {
-
-  def templateId: String
-
-  def fromAddress: String
-
-  def subject: Subject
-
-  def body: Body
-
-  def priority: MessagePriority
-}
+final case class Template(templateId: String, fromAddress: String, subject: Subject, body: Body, priority: MessagePriority)
 
 object Template {
   def render(template: Template, params: Params): Either[ErrorMessage, RenderResult] =

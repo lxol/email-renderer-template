@@ -4,8 +4,6 @@
 
 To send emails via the HMRC email service, clients must create an email rendering service similar to this template.
 This will be utilised by email service to render and then send emails.
-The following end point to render a template, should be supported along with a preview test end point.
-
 
 # API
 | **Path**                     | **Supported Methods** | **Description** |
@@ -36,8 +34,8 @@ Responds with status:
     "html": "Base64 encode endered template in HTML format",
     "fromAddress": "From address to be used for this email when sending",
     "subject": "Email subject to use", 
-    "service": "The type of service (for hmrc coorresponds to regime, i.e. sa/paye/etc) that this template belongs to",
-    "priority": "the priority queue that the email service should route the message to. one of { urgent, standard or background }
+    "service": "The type of service that this template belongs to (for hmrc, this corresponds to regime, i.e. sa/paye/etc)",
+    "priority": "the priority queue that the email service should route the message to { urgent|standard|background }"
 }
  ```
 * 404 When the template with the provided ID cannot be resolved.
