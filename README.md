@@ -52,7 +52,12 @@ Responds with status:
 # GET /email-renderer-template/test-only/preview
 
 During development of templates, the final display of each template can be verified using the preview end point. 
-This shows how the template will be rendered on an email client using sample parameters.
+This shows how the template will be rendered on an email client using sample parameters. You can run it locally by running the following commands:
+```bash
+sm --start ASSETS_FRONTEND -f
+sm --start EMAIL_RENDERER_TEMPLATE [-f|-r]
+```
+
 
 For representation on multiple email clients and browsers, please use [Litmus](https://litmus.com/email-testing)
 
