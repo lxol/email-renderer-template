@@ -18,7 +18,7 @@ This will be utilised by email service to render and then send emails.
  ``` json
  {
     "parameters": {
-      "param1" : "Parameter to be used in the email template"
+      "param1" : "Parameter to be used in the email template",
       "param2" : "Parameter to be used in the email template"
     }
   }
