@@ -33,6 +33,8 @@ trait MicroService {
     .settings(defaultSettings(): _*)
     .settings(
       libraryDependencies ++= appDependencies,
+      excludeDependencies += "uk.gov.hmrc"  %% "play-authorised-frontend",
+      excludeDependencies += "uk.gov.hmrc" %% "play-authorisation",
       scalaVersion := "2.11.11",
       retrieveManaged := true,
       evictionWarningOptions in update := EvictionWarningOptions.default.withWarnScalaVersionEviction(false),

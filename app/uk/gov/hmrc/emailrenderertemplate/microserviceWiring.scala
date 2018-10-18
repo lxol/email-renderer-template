@@ -21,7 +21,6 @@ import uk.gov.hmrc.http.hooks.HttpHooks
 import uk.gov.hmrc.play.audit.http.HttpAuditing
 import uk.gov.hmrc.play.microservice.config.LoadAuditingConfig
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
-import uk.gov.hmrc.play.auth.microservice.connectors.AuthConnector
 import uk.gov.hmrc.play.config.{AppName, RunMode, ServicesConfig}
 import uk.gov.hmrc.play.http.ws._
 
@@ -37,8 +36,4 @@ object WSHttp extends WSHttp
 
 object MicroserviceAuditConnector extends AuditConnector with RunMode {
   override lazy val auditingConfig = LoadAuditingConfig(s"auditing")
-}
-
-object MicroserviceAuthConnector extends AuthConnector with ServicesConfig with WSHttp {
-  override val authBaseUrl: String = baseUrl("auth")
 }
