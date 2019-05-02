@@ -4,10 +4,11 @@ import org.scalatest.words.EmptyWord
 import org.scalatestplus.play.{OneServerPerSuite, PlaySpec, WsScalaTestClient}
 import play.api.http.Status
 import play.api.libs.json.Json
+import play.api.libs.ws.WSClient
 import play.api.test.Helpers._
 
 class RendererISpec extends PlaySpec with OneServerPerSuite with WsScalaTestClient {
-
+  protected implicit lazy val wsClient: WSClient = app.injector.instanceOf[WSClient]
   "email renderer" should {
     "render the html and text content for sample1 template" in {
       val result = await(wsUrl("/templates/sample1").
